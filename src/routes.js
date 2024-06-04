@@ -21,7 +21,8 @@ routes.delete("/posts/:id", PostController.delete);
 
 // Address routes
 routes.get("/addresses", AddressController.index);
-routes.get("/addresses/:id/users", AddressController.show);
+routes.get("/addresses/:id/users", AddressController.showUserAddresses);
+routes.get("/addresses/:id", AddressController.showAddress);
 routes.post("/addresses", AddressController.create);
 routes.put("/addresses/:id", AddressController.update);
 routes.delete("/addresses/:id", AddressController.delete);
