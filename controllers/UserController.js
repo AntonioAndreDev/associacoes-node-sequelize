@@ -1,4 +1,5 @@
 const User = require('../models').User;
+const Post = require('../models').Post;
 
 module.exports = {
     async create(req, res) {
@@ -12,7 +13,14 @@ module.exports = {
     },
     async index(req, res) {
         try {
-            const users = await User.findAll();
+            const users = await User.findAll({
+                include: {
+                    model: Post,
+                    as: 'posts',
+                    attributes: ['id', 'title', 'content']
+                },
+                attributes: {exclude: ['password']}
+            });
             return res.status(200).json(users);
         } catch (error) {
             return res.status(400).json({error: error.message});
