@@ -1,11 +1,11 @@
 // PostController.js
-const User = require('../models/user');
-const Post = require('../models/post');
+const User = require('../models').User;
+const Post = require('../models').Post;
 
 module.exports = {
     async index(req, res) {
         try {
-            const posts = await Post.findAll({include: {model: User}});
+            const posts = await Post.findAll({include: {model: User, as: 'user', foreignKey: 'userId'}});
             return res.json(posts);
         } catch (error) {
             return res.status(500).json({error: error.message});
@@ -14,7 +14,7 @@ module.exports = {
 
     async show(req, res) {
         try {
-            const post = await Post.findByPk(req.params.id, {include: {model: User, as: 'user'}});
+            const post = await Post.findByPk(req.params.id, {include: {model: User, as: 'user', foreignKey: 'userId'}});
             if (!post) {
                 return res.status(404).json({error: 'Post not found'});
             }
