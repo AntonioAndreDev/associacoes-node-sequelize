@@ -17,12 +17,18 @@ module.exports = {
         const {id} = req.params;
         const {street, number} = req.body;
         const address = await Address.update({street, number}, {where: {id}});
+        if (!address) {
+            return res.status(404).json({error: 'Address not found'});
+        }
         return res.json(address);
     },
 
     async delete(req, res) {
         const {id} = req.params;
         await Address.destroy({where: {id}});
+        if (!address) {
+            return res.status(404).json({error: 'Address not found'});
+        }
         return res.json({message: 'Address deleted successfully'});
     },
 
@@ -41,6 +47,9 @@ module.exports = {
         const {userId} = req.body;
         const address = await Address.findByPk(id);
         const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({error: 'User not found'});
+        }
         await address.addUser(user);
         return res.json({message: 'User added to address successfully'});
     },
@@ -50,6 +59,9 @@ module.exports = {
         const {userId} = req.body;
         const address = await Address.findByPk(id);
         const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({error: 'User not found'});
+        }
         await address.removeUser(user);
         return res.json({message: 'User removed from address successfully'});
     }
