@@ -9,6 +9,12 @@ module.exports = (sequelize) => {
                 foreignKey: 'userId',
                 as: 'posts',
             });
+
+            this.belongsToMany(models.Address, {
+                through: 'UserAddress',
+                foreignKey: 'userId',
+                as: 'addresses',
+            });
         }
     }
 
