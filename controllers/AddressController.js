@@ -1,3 +1,11 @@
+/**
+ * Address Controller
+ * @module controllers/AddressController
+ * @requires models.Address
+ * @requires models.User
+ * @description This module provides Address Controller
+ */
+
 const Address = require("../models").Address
 const User = require("../models").User
 
@@ -32,6 +40,13 @@ module.exports = {
         return res.json({message: 'Address deleted successfully'});
     },
 
+    /**
+     * Show all users of a specific address
+     * @param req - request
+     * @param res - response
+     * @returns {Promise<*>}
+     * @description This function returns all users of a specific address
+     */
     async showUserAddresses(req, res) {
         const {id} = req.params;
         const address = await Address.findByPk(id);
@@ -42,6 +57,13 @@ module.exports = {
         return res.json(users);
     },
 
+    /**
+     * Show all addresses of a specific user
+     * @param req - request
+     * @param res - response
+     * @returns {Promise<*>}
+     * @description This function returns all addresses of a specific user
+     */
     async showAddressesUser(req, res) {
         const {id} = req.params;
         const user = await User.findByPk(id);
