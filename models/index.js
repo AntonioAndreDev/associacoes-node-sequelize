@@ -4,10 +4,12 @@ const sequelize = require('../config/sequelize');
 
 const User = require('./user')(sequelize, Sequelize.DataTypes);
 const Post = require('./post')(sequelize, Sequelize.DataTypes);
+const Address = require('./address')(sequelize, Sequelize.DataTypes);
 
 const models = {
     User: User,
-    Post: Post
+    Post: Post,
+    Address: Address
 };
 
 Object.keys(models).forEach((modelName) => {
