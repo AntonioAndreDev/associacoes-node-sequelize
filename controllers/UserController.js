@@ -18,11 +18,18 @@ module.exports = {
     async index(req, res) {
         try {
             const users = await User.findAll({
-                include: {
-                    model: Post,
-                    as: 'posts',
-                    attributes: ['id', 'title', 'content']
-                },
+                include: [
+                    {
+                        model: Post,
+                        as: 'posts',
+                        attributes: ['id', 'title', 'content'],
+                    },
+                    {
+                        model: Address,
+                        as: 'addresses',
+                        attributes: ['street', 'number']
+                    }
+                ],
                 attributes: {exclude: ['password']}
             });
             return res.status(200).json(users);
