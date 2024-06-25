@@ -5,7 +5,14 @@ const Post = require('../models').Post;
 module.exports = {
     async index(req, res) {
         try {
-            const posts = await Post.findAll({include: {model: User, as: 'user', foreignKey: 'userId'}});
+            const posts = await Post.findAll({
+                include: [
+                    {
+                        model: User, as: 'user',
+                        attributes: ['id', 'name', 'email']
+                    }
+                ]
+            });
             return res.json(posts);
         } catch (error) {
             return res.status(500).json({error: error.message});
