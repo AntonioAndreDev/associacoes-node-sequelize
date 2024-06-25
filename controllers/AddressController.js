@@ -32,7 +32,7 @@ module.exports = {
         return res.json({message: 'Address deleted successfully'});
     },
 
-    async showUserAddresses(req, res) {
+    async showAddressesUser(req, res) {
         const {id} = req.params;
         const address = await Address.findByPk(id);
         if (!address) {
@@ -42,7 +42,7 @@ module.exports = {
         return res.json(users);
     },
 
-    async showAddressesUser(req, res) {
+    async showUserAddresses(req, res) {
         const {id} = req.params;
         const user = await User.findByPk(id);
         if (!user) {
