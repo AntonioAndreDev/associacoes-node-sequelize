@@ -14,7 +14,15 @@ module.exports = {
 
     async show(req, res) {
         try {
-            const post = await Post.findByPk(req.params.id, {include: {model: User, as: 'user', foreignKey: 'userId'}});
+            const post = await Post.findByPk(req.params.id, {
+                include: [
+                    {
+                        model: User, as: 'user',
+                        attributes: ['id', 'name', 'email']
+                    }
+                ],
+                attributes: ['id', 'title', 'content']
+            });
             if (!post) {
                 return res.status(404).json({error: 'Post not found'});
             }
