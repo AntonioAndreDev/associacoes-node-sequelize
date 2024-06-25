@@ -1,11 +1,15 @@
 const User = require('../models').User;
 const Post = require('../models').Post;
+const Address = require('../models').Address;
 
 module.exports = {
     async create(req, res) {
         const {name, email, password} = req.body;
         try {
             const user = await User.create({name, email, password});
+            if (user) {
+                delete user.dataValues.password
+            }
             return res.status(201).json(user);
         } catch (error) {
             return res.status(400).json({error: error.message});
