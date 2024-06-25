@@ -1,8 +1,8 @@
 'use strict';
 const {
-    Model
+    Model, DataTypes
 } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
     class Address extends Model {
         static associate(models) {
             this.belongsToMany(models.User, {
