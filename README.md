@@ -6,7 +6,7 @@
 ## As associações
 - Esse repositorio conta com as associações dos tipos:
 - 1:N (um para muitos) -> essa associação pode ser visualizada entre as tabelas Users e Posts, onde um usuário pode ter vários posts e um post pertence à um usuário.
-- N:N (muitos para muitos) -> essa associação pode ser visualizada entre as tabelas Users e Addresses, onde um usuário pode ter vários endereços e um endereço pode pertencer a vários usuários. Vale lembrar que em um relacionamento do tipo muito para muitos é criado uma tabela pivô, essa por sua vez está presente no código como a tabela UserAddresses, que armazena as chaves estrangeiras que fazem referência ao ID do usuário e ao ID do seu endereço.
+- N:N (muitos para muitos) -> essa associação pode ser visualizada entre as tabelas Users e Addresses, onde um usuário pode ter vários endereços e um endereço pode pertencer a vários usuários. Vale lembrar que em um relacionamento do tipo muito para muitos é criado uma tabela pivot, essa por sua vez está presente no código como a tabela UserAddresses, que armazena as chaves estrangeiras que fazem referência ao ID do usuário e ao ID do seu endereço.
 
 ## 0 - Iniciando o projeto e instalando depedências (caso esteja iniciando um projeto do zero, sem usar esse repositório)
 
